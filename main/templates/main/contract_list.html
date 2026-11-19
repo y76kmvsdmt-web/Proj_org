@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h1>Договоры</h1>
+<a href="{% url 'contract_create' %}" class="btn">+ Добавить договор</a>
+<table class="table">
+    <tr><th>Номер</th><th>Заказчик</th><th>Дата заключения</th><th>Сумма</th><th>Статус</th><th>Действия</th></tr>
+    {% for c in object_list %}
+    <tr>
+        <td>{{ c.number }}</td>
+        <td>{{ c.customer }}</td>
+        <td>{{ c.sign_date }}</td>
+        <td>{{ c.total_cost|floatformat:2 }}</td>
+        <td>{{ c.get_status_display }}</td>
+        <td>
+            <a href="{% url 'contract_detail' c.pk %}">Подробнее</a> |
+            <a href="{% url 'contract_update' c.pk %}">Изменить</a> |
+            <a href="{% url 'contract_delete' c.pk %}">Удалить</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6">Записей пока нет</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

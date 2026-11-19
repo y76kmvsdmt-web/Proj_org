@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h1>{{ object.full_name }}</h1>
+{% if object.photo %}<img src="{{ object.photo.url }}" class="detail-photo" alt="{{ object.full_name }}">{% endif %}
+<p><b>Пол:</b> {{ object.get_gender_display }}</p>
+<p><b>Паспорт:</b> {{ object.passport }}</p>
+<p><b>Дата рождения:</b> {{ object.birth_date }}</p>
+<p><b>Дата приёма:</b> {{ object.hire_date }}</p>
+<p><b>Телефон:</b> {{ object.phone }}</p>
+<p><b>Email:</b> {{ object.email }}</p>
+<p><b>Должность:</b> {{ object.position }}</p>
+<p><b>Отдел:</b> {{ object.department }}</p>
+<p><b>Характеристика:</b> {{ object.characteristic|default:"—" }}</p>
+
+<h3>Руководит проектами</h3>
+<ul>
+    {% for p in object.project_set.all %}
+    <li><a href="{% url 'project_detail' p.pk %}">{{ p.name }}</a></li>
+    {% empty %}<li>нет</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'employee_update' object.pk %}" class="btn">Изменить</a>
+<a href="{% url 'employee_delete' object.pk %}" class="btn btn-red">Удалить</a>
+<a href="{% url 'employee_list' %}" class="btn btn-gray">К списку</a>
+{% endblock %}

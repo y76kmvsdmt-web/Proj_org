@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h1>Проекты</h1>
+<a href="{% url 'project_create' %}" class="btn">+ Добавить проект</a>
+<table class="table">
+    <tr><th>Изображение</th><th>Название</th><th>Статус</th><th>Руководитель</th><th>Стоимость</th><th>Действия</th></tr>
+    {% for p in object_list %}
+    <tr>
+        <td>{% if p.photo %}<img src="{{ p.photo.url }}" class="thumb" alt="{{ p.name }}">{% else %}нет фото{% endif %}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.get_status_display }}</td>
+        <td>{{ p.manager|default:"—" }}</td>
+        <td>{{ p.cost|floatformat:2 }}</td>
+        <td>
+            <a href="{% url 'project_detail' p.pk %}">Подробнее</a> |
+            <a href="{% url 'project_update' p.pk %}">Изменить</a> |
+            <a href="{% url 'project_delete' p.pk %}">Удалить</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6">Записей пока нет</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

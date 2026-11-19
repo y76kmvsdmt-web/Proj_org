@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Шапка сайта */
+header {
+    background-color: #1e3557;
+    color: white;
+    padding: 20px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #65b5d9;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #65b5d9;
+}
+
+/* Выпадающее меню */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1e3557;
+    min-width: 170px;
+    padding: 10px;
+    z-index: 10;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Основная часть */
+main {
+    min-height: 600px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+h1 {
+    color: #1e3557;
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #1e3557;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 17px;
+}
+
+/* Карточки */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+/* Подвал */
+footer {
+    background-color: #1e3557;
+    color: white;
+    text-align: center;
+    padding: 25px 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Адаптация для телефонов */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+}
+
+.table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+.table th, .table td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: middle; }
+.table th { background: #f0f0f0; }
+.thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; }
+.detail-photo { max-width: 350px; width: 100%; border-radius: 8px; margin-bottom: 15px; }
+.btn { display: inline-block; padding: 8px 14px; background: #2d6cdf; color: #fff; text-decoration: none;
+       border: none; border-radius: 5px; cursor: pointer; margin: 5px 5px 5px 0; font-size: 14px; }
+.btn-red { background: #d33; }
+.btn-gray { background: #777; }
+.crud-form p { margin: 10px 0; }
+.crud-form label { display: block; font-weight: bold; margin-bottom: 3px; }
+.crud-form ul { list-style: none; padding: 0; }

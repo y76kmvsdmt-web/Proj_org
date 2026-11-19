@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h1>Заказчики</h1>
+<a href="{% url 'customer_create' %}" class="btn">+ Добавить заказчика</a>
+<table class="table">
+    <tr><th>Организация</th><th>Контактное лицо</th><th>Телефон</th><th>ИНН</th><th>Действия</th></tr>
+    {% for c in object_list %}
+    <tr>
+        <td>{{ c.name }}</td>
+        <td>{{ c.contact_person }}</td>
+        <td>{{ c.phone }}</td>
+        <td>{{ c.inn }}</td>
+        <td>
+            <a href="{% url 'customer_detail' c.pk %}">Подробнее</a> |
+            <a href="{% url 'customer_update' c.pk %}">Изменить</a> |
+            <a href="{% url 'customer_delete' c.pk %}">Удалить</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">Записей пока нет</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

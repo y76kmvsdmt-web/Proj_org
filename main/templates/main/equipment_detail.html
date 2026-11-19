@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h1>{{ object.name }}</h1>
+{% if object.photo %}<img src="{{ object.photo.url }}" class="detail-photo" alt="{{ object.name }}">{% endif %}
+<p><b>Инвентарный номер:</b> {{ object.inventory_number }}</p>
+<p><b>Тип:</b> {{ object.equipment_type }}</p>
+<p><b>Дата поступления:</b> {{ object.receipt_date }}</p>
+<p><b>Первоначальная стоимость:</b> {{ object.initial_cost|floatformat:2 }}</p>
+<p><b>Состояние:</b> {{ object.condition }}</p>
+<p><b>Отдел-владелец:</b> {{ object.department|default:"—" }}</p>
+
+<a href="{% url 'equipment_update' object.pk %}" class="btn">Изменить</a>
+<a href="{% url 'equipment_delete' object.pk %}" class="btn btn-red">Удалить</a>
+<a href="{% url 'equipment_list' %}" class="btn btn-gray">К списку</a>
+{% endblock %}

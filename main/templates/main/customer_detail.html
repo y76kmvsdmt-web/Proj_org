@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h1>{{ object.name }}</h1>
+<p><b>Контактное лицо:</b> {{ object.contact_person }}</p>
+<p><b>Телефон:</b> {{ object.phone }}</p>
+<p><b>Email:</b> {{ object.email }}</p>
+<p><b>Адрес:</b> {{ object.address }}</p>
+<p><b>ИНН:</b> {{ object.inn }}</p>
+
+<h3>Договоры заказчика</h3>
+<ul>
+    {% for c in object.contract_set.all %}
+    <li><a href="{% url 'contract_detail' c.pk %}">{{ c }}</a></li>
+    {% empty %}<li>нет</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'customer_update' object.pk %}" class="btn">Изменить</a>
+<a href="{% url 'customer_delete' object.pk %}" class="btn btn-red">Удалить</a>
+<a href="{% url 'customer_list' %}" class="btn btn-gray">К списку</a>
+{% endblock %}

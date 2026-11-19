@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Проектная организация{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">ПРОЕКТ<span>СТРОЙ</span></div>               
+                <nav>
+                    <a href="{% url 'home' %}">Главная</a>
+                    <a href="{% url 'about' %}">О компании</a>
+                    <a href="{% url 'contacts' %}">Контакты</a>
+                    <a href="{% url 'location' %}">Как нас найти</a>
+                    <a href="{% url 'projects' %}">Наши проекты</a>
+                    <a href="{% url 'services' %}">Услуги</a>
+                    <a href="{% url 'employee_list' %}">Сотрудники</a>
+                    <a href="{% url 'customer_list' %}">Заказчики</a>
+                    <a href="{% url 'project_list' %}">Проекты (БД)</a>
+                    <a href="{% url 'contract_list' %}">Договоры</a>
+                    <a href="{% url 'equipment_list' %}">Оборудование</a>
+                </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 ПроектСтрой. Проектирование и инженерные решения.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

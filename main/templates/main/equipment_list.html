@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h1>Оборудование</h1>
+<a href="{% url 'equipment_create' %}" class="btn">+ Добавить оборудование</a>
+<table class="table">
+    <tr><th>Фото</th><th>Инв. номер</th><th>Наименование</th><th>Тип</th><th>Отдел</th><th>Действия</th></tr>
+    {% for e in object_list %}
+    <tr>
+        <td>{% if e.photo %}<img src="{{ e.photo.url }}" class="thumb" alt="{{ e.name }}">{% else %}нет фото{% endif %}</td>
+        <td>{{ e.inventory_number }}</td>
+        <td>{{ e.name }}</td>
+        <td>{{ e.equipment_type }}</td>
+        <td>{{ e.department|default:"—" }}</td>
+        <td>
+            <a href="{% url 'equipment_detail' e.pk %}">Подробнее</a> |
+            <a href="{% url 'equipment_update' e.pk %}">Изменить</a> |
+            <a href="{% url 'equipment_delete' e.pk %}">Удалить</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6">Записей пока нет</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

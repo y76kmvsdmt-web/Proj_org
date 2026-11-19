@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h1>{{ object.name }}</h1>
+{% if object.photo %}<img src="{{ object.photo.url }}" class="detail-photo" alt="{{ object.name }}">{% endif %}
+<p><b>Описание:</b> {{ object.description|default:"—" }}</p>
+<p><b>Статус:</b> {{ object.get_status_display }}</p>
+<p><b>Дата начала:</b> {{ object.start_date }}</p>
+<p><b>Плановая дата окончания:</b> {{ object.end_plan_date }}</p>
+<p><b>Фактическая дата окончания:</b> {{ object.end_fact_date|default:"—" }}</p>
+<p><b>Стоимость:</b> {{ object.cost|floatformat:2 }}</p>
+<p><b>Руководитель:</b>
+    {% if object.manager %}<a href="{% url 'employee_detail' object.manager.pk %}">{{ object.manager }}</a>{% else %}—{% endif %}
+</p>
+
+<h3>Договоры по проекту</h3>
+<ul>
+    {% for c in object.contracts.all %}
+    <li><a href="{% url 'contract_detail' c.pk %}">{{ c }}</a></li>
+    {% empty %}<li>нет</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'project_update' object.pk %}" class="btn">Изменить</a>
+<a href="{% url 'project_delete' object.pk %}" class="btn btn-red">Удалить</a>
+<a href="{% url 'project_list' %}" class="btn btn-gray">К списку</a>
+{% endblock %}
